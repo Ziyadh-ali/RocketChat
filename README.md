@@ -1,4 +1,3 @@
-```markdown
 # React Chat App (Rocket.Chat Frontend)
 
 A modern React-based chat application that connects to a Rocket.Chat server, providing a clean, responsive, and user-friendly chat interface. This frontend application is designed to integrate seamlessly with a Rocket.Chat backend.

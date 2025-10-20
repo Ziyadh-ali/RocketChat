@@ -1,218 +1,203 @@
 # React Chat App
 
-A modern React chat application that connects to a Rocket.Chat server. This is the frontend application that provides a clean, responsive chat interface.
+A modern React-based chat application that connects to a Rocket.Chat server, providing a clean, responsive, and user-friendly chat interface. This frontend application is designed to integrate seamlessly with a Rocket.Chat backend for real-time messaging.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Rocket.Chat server running (see main README for setup)
+- Rocket.Chat server running (refer to the Rocket.Chat documentation for setup)
 - Node.js 20.19+ or 22.12+
 - npm or yarn
 
 ### Installation
 
-1. **Install dependencies**:
+1. **Clone the repository**:
    ```bash
-   npm install
-   ```
+   git clone https://github.com/Ziyadh-ali/RocketChat.git
+   cd RocketChat
 
-2. **Configure environment**:
-   ```bash
-   # The .env file is already configured for localhost:3000
-   # Edit .env if your Rocket.Chat server is running on a different URL
-   ```
 
-3. **Start development server**:
-   ```bash
-   npm run dev
-   ```
+Install dependencies:
+bashnpm install
 
-4. **Open your browser** and go to `http://localhost:5173` (or the port shown in terminal)
 
-## 🎯 Features
+Configure environment:
+bash# Create a .env file or modify the existing .env
+# Set the Rocket.Chat server URL (default: http://localhost:3000)
+cp .env.example .env
+Update .env if your Rocket.Chat server is running on a different URL:
+envVITE_ROCKETCHAT_URL=http://localhost:3000
 
-- 🔐 **Authentication**: Login with Rocket.Chat credentials
-- 💬 **Real-time Chat**: Send and receive messages with 3-second polling
-- 📱 **Responsive Design**: Works on desktop and mobile devices
-- 🎨 **Modern UI**: Clean, intuitive interface with message bubbles
-- 🔄 **Auto-refresh**: Messages update automatically
-- 📋 **Room Management**: Browse and select different channels/rooms
-- 🚀 **Fast Development**: Hot module replacement with Vite
 
-## 🏗️ Project Structure
+Start the development server:
+bashnpm run dev
 
-```
-src/
-├── components/              # React components
-│   ├── Login.jsx           # Login form with validation
-│   ├── ChatLayout.jsx      # Main chat container layout
-│   ├── RoomList.jsx        # Sidebar with room/channel list
-│   ├── MessageList.jsx     # Scrollable message display area
-│   ├── MessageInput.jsx    # Message input with send button
-│   ├── Message.jsx         # Individual message component
-│   └── *.css               # Component-specific styles
+
+Open your browser and navigate to http://localhost:5173 (or the port displayed in the terminal).
+
+
+🎯 Features
+
+🔐 Authentication: Secure login using Rocket.Chat credentials.
+💬 Real-time Messaging: Send and receive messages with a 3-second polling interval.
+📱 Responsive Design: Optimized for desktop, tablet, and mobile devices.
+🎨 Modern UI: Clean and intuitive interface with styled message bubbles.
+🔄 Auto-refresh: Messages update automatically in real-time.
+📋 Channel Management: Browse and switch between different chat rooms/channels.
+🚀 Fast Development: Powered by Vite with hot module replacement for rapid development.
+
+🏗️ Project Structure
+textsrc/
+├── assets/                 # Static assets (images, etc.)
+├── components/             # React components
+│   ├── Login.jsx          # Login form with input validation
+│   ├── ChatLayout.jsx     # Main chat interface layout
+│   ├── RoomList.jsx       # Sidebar for listing rooms/channels
+│   ├── MessageList.jsx    # Scrollable message display
+│   ├── MessageInput.jsx   # Input field for sending messages
+│   ├── Message.jsx        # Individual message component
+│   └── *.css              # Component-specific styles
 ├── contexts/
-│   └── AuthContext.jsx     # Authentication state management
+│   └── AuthContext.jsx    # Manages authentication state
 ├── services/
-│   └── rocketchat.js       # Rocket.Chat API integration
-├── App.jsx                 # Main app component with routing
-├── App.css                 # Global styles
+│   └── rocketchat.js      # Rocket.Chat API integration logic
+├── App.jsx                # Main application component with routing
+├── App.css                # Global styles
 └── main.jsx               # Application entry point
-```
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-```env
-VITE_ROCKETCHAT_URL=http://localhost:3000
-```
-
-**Note**: All Vite environment variables must be prefixed with `VITE_`
-
-### API Configuration
-
+⚙️ Configuration
+Environment Variables
+envVITE_ROCKETCHAT_URL=http://localhost:3000
+Note: All environment variables for Vite must be prefixed with VITE_.
+API Configuration
 The app connects to Rocket.Chat's REST API v1:
-- Base URL: `http://localhost:3000/api/v1`
-- Authentication: Token-based (X-Auth-Token, X-User-Id headers)
-- Polling: Messages refresh every 3 seconds
 
-## 🔧 Development
+Base URL: http://localhost:3000/api/v1
+Authentication: Token-based (uses X-Auth-Token and X-User-Id headers)
+Polling: Messages refresh every 3 seconds for real-time updates
 
-### Available Scripts
+🔧 Development
+Available Scripts
+bashnpm run dev          # Starts the development server
+npm run build        # Builds the app for production
+npm run preview      # Previews the production build locally
+npm run lint         # Runs ESLint for code quality checks
+Hot Reload
+The app uses Vite's hot module replacement, enabling real-time updates to components without losing application state during development.
+Browser Support
 
-```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
-npm run lint         # Run ESLint
-```
+Google Chrome (recommended)
+Mozilla Firefox
+Safari
+Microsoft Edge
 
-### Hot Reload
+🐛 Troubleshooting
+Common Issues
 
-The app supports hot module replacement, so changes to components will update automatically without losing state.
+"Connection Error" or "Network Error":
 
-### Browser Support
+Verify that the Rocket.Chat server is running at http://localhost:3000.
+Ensure CORS is enabled in the Rocket.Chat admin settings.
+Check the VITE_ROCKETCHAT_URL in the .env file.
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
 
-## 🐛 Troubleshooting
+"Login Failed":
 
-### Common Issues
+Confirm the credentials in the Rocket.Chat admin panel.
+Ensure the user account exists and is active.
+Verify that the user has the necessary permissions.
 
-1. **"Connection Error" or "Network Error"**:
-   - Ensure Rocket.Chat is running on `http://localhost:3000`
-   - Check if CORS is enabled in Rocket.Chat admin settings
-   - Verify the VITE_ROCKETCHAT_URL in .env file
 
-2. **"Login Failed"**:
-   - Verify credentials in Rocket.Chat admin panel
-   - Check if user account exists and is active
-   - Ensure user has proper permissions
+"No rooms available":
 
-3. **"No rooms available"**:
-   - Make sure user is added to channels in Rocket.Chat
-   - Check if user has proper room access permissions
-   - Verify authentication token is valid
+Ensure the user is added to channels in Rocket.Chat.
+Check room access permissions for the user.
+Validate the authentication token.
 
-4. **Messages not loading**:
-   - Check browser console for API errors
-   - Ensure you've selected a room/channel
-   - Verify network connectivity
 
-5. **Styling issues**:
-   - Clear browser cache
-   - Check if CSS files are loading properly
-   - Verify responsive design on different screen sizes
+Messages not loading:
 
-### Debug Mode
+Inspect the browser console for API-related errors.
+Ensure a room/channel is selected.
+Confirm network connectivity.
 
-Enable debug logging by opening browser console and looking for:
-- API request/response logs
-- Authentication status
-- Error messages with stack traces
 
-## 🚀 Building for Production
+Styling issues:
 
-1. **Build the app**:
-   ```bash
-   npm run build
-   ```
+Clear the browser cache.
+Verify that CSS files are loading correctly.
+Test the responsive design across different screen sizes.
 
-2. **Preview the build**:
-   ```bash
-   npm run preview
-   ```
 
-3. **Deploy**: The `dist` folder contains the production build
 
-## 📱 Responsive Design
+Debug Mode
+Enable debug logging by opening the browser's developer console to view:
 
-The app is fully responsive and works on:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (320px - 767px)
+API request and response logs
+Authentication status updates
+Detailed error messages with stack traces
 
-## 🎨 Customization
+🚀 Building for Production
 
-### Styling
-- Each component has its own CSS file
-- Global styles are in `App.css`
-- Uses CSS custom properties for theming
-- Modern CSS with flexbox and grid
+Build the app:
+bashnpm run build
 
-### Adding Features
-- New components go in `src/components/`
-- API functions go in `src/services/rocketchat.js`
-- State management uses React Context API
+Preview the build:
+bashnpm run preview
 
-## 📚 API Reference
+Deploy: The dist folder contains the production-ready build.
 
-### Authentication
-```javascript
-// Login
+📱 Responsive Design
+The application is fully responsive and supports:
+
+Desktop (1200px+)
+Tablet (768px - 1199px)
+Mobile (320px - 767px)
+
+🎨 Customization
+Styling
+
+Component-specific styles are located in src/components/*.css.
+Global styles are defined in src/App.css.
+Uses CSS custom properties for easy theming.
+Built with modern CSS techniques (flexbox and grid).
+
+Adding Features
+
+Add new components in src/components/.
+Extend API functionality in src/services/rocketchat.js.
+Manage global state using the React Context API in src/contexts/.
+
+📚 API Reference
+Authentication
+javascript// Login
 POST /api/v1/login
 Body: { user: "username", password: "password" }
 
 // Response
 { data: { authToken: "...", userId: "...", me: {...} } }
-```
-
-### Rooms
-```javascript
-// Get rooms
+Rooms
+javascript// Get rooms
 GET /api/v1/rooms.get
 Headers: { "X-Auth-Token": "...", "X-User-Id": "..." }
-```
-
-### Messages
-```javascript
-// Get messages
+Messages
+javascript// Get messages
 GET /api/v1/channels.history?roomId=ROOM_ID
 Headers: { "X-Auth-Token": "...", "X-User-Id": "..." }
 
 // Send message
 POST /api/v1/chat.sendMessage
 Body: { message: { rid: "ROOM_ID", msg: "text" } }
-```
+🤝 Contributing
 
-## 🤝 Contributing
+Fork the repository: https://github.com/Ziyadh-ali/RocketChat.git
+Create a feature branch: git checkout -b feature-name
+Make your changes and test thoroughly.
+Commit changes: git commit -m "Add feature"
+Push to the branch: git push origin feature-name
+Submit a pull request.
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes
-4. Test thoroughly
-5. Commit: `git commit -m "Add feature"`
-6. Push: `git push origin feature-name`
-7. Submit a pull request
-
-## 📄 License
-
+📄 License
 MIT License - see LICENSE file for details.
 
----
-
-**Happy Chatting! 💬**
+Built by Ziyadh Ali
+Happy Chatting! 💬
